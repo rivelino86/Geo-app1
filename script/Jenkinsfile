@@ -4,7 +4,7 @@ pipeline{
         maven 'M2_HOME'
     }
     stages{
-       stage(sonarcloud analysis){
+       stage('sonarcloud analysis'){
             steps{
                 sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=rivelino86_Geo-app1'
             }
