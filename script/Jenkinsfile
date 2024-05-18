@@ -9,14 +9,18 @@ pipeline{
                 withSonarQubeEnv('sonarQube'){
                 sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=rivelino86_Geo-app1'
               }
-            }
-                
+            }    
           }
         stage("maven"){
             steps{
                 sh 'mvn clean validate compile install test package'
             }
-       
+        }
+        stage('upload artifact'){
+            steps{
+              sh 'curl -uadmin:AP9zz3w2porBznMWtvBy9Pw9eM4 -T \
+             target/bio*.jar  "http://ec2-54-227-222-56.compute-1.amazonaws.com:8081/artifactory/Geolocation/geo/bio_${BUILD_ID}.jar"'
+            }
         }
       }
     }
