@@ -6,8 +6,11 @@ pipeline{
     stages{
        stage('sonarcloud analysis'){
             steps{
+                withSonarQubeEnv('sonarQube'){
                 sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=rivelino86_Geo-app1'
+              }
             }
+                
           }
         stage("maven"){
             steps{
