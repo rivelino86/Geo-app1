@@ -22,6 +22,7 @@ jobs:
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    
 
     # 🔹 Run SonarQube analysis
     - name: SonarQube Scan
